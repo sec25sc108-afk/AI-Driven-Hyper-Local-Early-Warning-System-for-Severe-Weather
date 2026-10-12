@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071426">
+  <title>WeatherWatch AI | Hyper-local Early Warning</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="WeatherWatch AI home">
+        <span class="brand-mark">✦</span><span>WeatherWatch <b>AI</b></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav" href="#alerts"><span>⚑</span> Early warnings <span class="nav-count" id="alertCount">3</span></a>
+      <a class="nav" href="#forecast"><span>◷</span> Forecast</a>
+      <a class="nav" href="#safety"><span>＋</span> Safety guidance</a>
+      <div class="side-bottom">
+        <div class="status-dot"></div>
+        <div><strong>Prototype mode</strong><small>Sample data · not for emergencies</small></div>
+      </div>
+    </aside>
+
+    <main class="main" id="overview">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">DISASTER MANAGEMENT · SIH PROTOTYPE</div>
+          <h1>Weather intelligence, <span>ahead of time.</span></h1>
+          <p class="subheading">Hyper-local weather monitoring and early-warning dashboard.</p>
+        </div>
+        <div class="top-actions">
+          <span class="live-pill"><i></i> DEMO LIVE</span>
+          <button class="icon-button" id="refreshBtn" title="Refresh demo data" aria-label="Refresh demo data">↻</button>
+        </div>
+      </header>
+
+      <section class="location-row">
+        <div class="location-info"><span class="pin">⌖</span><div><small>MONITORING AREA</small><strong id="locationName">Chennai, Tamil Nadu</strong></div></div>
+        <form id="locationForm" class="search-form">
+          <input id="locationInput" aria-label="Enter location" placeholder="Try a location (demo only)">
+          <button type="submit">Check area</button>
+        </form>
+      </section>
+
+      <section class="metrics-grid" aria-label="Weather overview">
+        <article class="metric-card current">
+          <div class="card-top"><span>Current conditions</span><span class="weather-icon">☁</span></div>
+          <div class="temperature"><span id="temp">31</span><sup>°C</sup></div>
+          <div class="metric-desc" id="condition">Cloudy with humid conditions</div>
+          <div class="metric-foot"><span>Feels like <b id="feels">35°C</b></span><span>Humidity <b id="humidity">78%</b></span></div>
+        </article>
+        <article class="metric-card">
+          <div class="card-top"><span>Rain probability</span><span class="metric-icon blue">☂</span></div>
+          <div class="metric-value" id="rain">68<span>%</span></div>
+          <div class="progress"><i id="rainBar" style="width:68%"></i></div>
+          <div class="metric-foot"><span>Next 6 hours</span><b class="text-blue" id="rainLabel">High chance</b></div>
+        </article>
+        <article class="metric-card">
+          <div class="card-top"><span>Wind speed</span><span class="metric-icon purple">↗</span></div>
+          <div class="metric-value"><span id="wind">24</span><small> km/h</small></div>
+          <div class="metric-foot"><span>Direction</span><b id="windDir">NE · 42°</b></div>
+        </article>
+        <article class="metric-card risk-card">
+          <div class="card-top"><span>Overall risk level</span><span class="metric-icon amber">⚠</span></div>
+          <div class="risk-level"><span class="risk-dot"></span><b id="riskText">MODERATE</b></div>
+          <p id="riskDesc">Stay aware of changing conditions.</p>
+          <div class="metric-foot"><span>Confidence</span><b>Demo estimate</b></div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel forecast-panel" id="forecast">
+          <div class="panel-heading"><div><div class="eyebrow">UPCOMING CONDITIONS</div><h2>6-hour outlook</h2></div><span class="soft-badge">Illustrative data</span></div>
+          <div class="forecast-chart">
+            <div class="chart-labels"><span>Rain probability</span><span>0–100%</span></div>
+            <div class="chart-bars" id="chartBars">
+              <div class="bar-col"><div class="bar" style="height:36%"></div><span>Now</span></div>
+              <div class="bar-col"><div class="bar" style="height:48%"></div><span>+1h</span></div>
+              <div class="bar-col"><div class="bar" style="height:67%"></div><span>+2h</span></div>
+              <div class="bar-col"><div class="bar high" style="height:82%"></div><span>+3h</span></div>
+              <div class="bar-col"><div class="bar high" style="height:74%"></div><span>+4h</span></div>
+              <div class="bar-col"><div class="bar" style="height:58%"></div><span>+5h</span></div>
+            </div>
+          </div>
+          <div class="forecast-note"><span class="note-icon">↗</span><div><b>What this means</b><p id="forecastMessage">Rain chances may rise during the next few hours. Keep checking official local updates.</p></div></div>
+        </article>
+
+        <article class="panel alerts-panel" id="alerts">
+          <div class="panel-heading"><div><div class="eyebrow">ATTENTION REQUIRED</div><h2>Early warnings</h2></div><span class="alert-count">03 ACTIVE</span></div>
+          <div class="alert-list" id="alertList">
+            <div class="alert-item warning"><span class="alert-symbol">!</span><div><div class="alert-title">Heavy rainfall watch</div><p>Rainfall may intensify in the next 3–6 hours.</p><small>DEMO ALERT · 8 min ago</small></div></div>
+            <div class="alert-item info"><span class="alert-symbol">↗</span><div><div class="alert-title">Gusty winds possible</div><p>Secure loose objects and avoid exposed areas.</p><small>DEMO ALERT · 21 min ago</small></div></div>
+            <div class="alert-item caution"><span class="alert-symbol">⌁</span><div><div class="alert-title">Waterlogging awareness</div><p>Low-lying roads may become difficult to cross.</p><small>SAFETY NOTICE · 34 min ago</small></div></div>
+          </div>
+          <p class="demo-disclaimer">These are simulated alerts for demonstration only.</p>
+        </article>
+      </section>
+
+      <section class="panel safety-panel" id="safety">
+        <div class="panel-heading"><div><div class="eyebrow">BE PREPARED</div><h2>Recommended safety actions</h2></div><span class="soft-badge">General guidance</span></div>
+        <div class="safety-grid">
+          <div class="safety-item"><span class="safety-icon">⌂</span><div><b>Protect your home</b><p>Secure outdoor items and keep essential supplies ready.</p></div></div>
+          <div class="safety-item"><span class="safety-icon">⇧</span><div><b>Avoid floodwater</b><p>Never walk or drive through flooded roads or underpasses.</p></div></div>
+          <div class="safety-item"><span class="safety-icon">◉</span><div><b>Follow official alerts</b><p>Use IMD, local authorities, and emergency services for verified instructions.</p></div></div>
+        </div>
+      </section>
+      <footer>WeatherWatch AI · Student prototype · Sample values are not live weather data. <span>Always follow official warnings.</span></footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
